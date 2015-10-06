@@ -6,13 +6,23 @@ var React = require('react');
 var Main = React.createClass({
 
     render : function(){
+        return (
+            <div className="main-container">
+                <nav className="navbar navbar-default" role="navigation">
+                    <div className="col-xs-7 col-xs-offset-2" style={{marginTop: 15}}>
+                        MENU
+                    </div>
+                </nav>
+                <div className="container">
+                    {this.props.children}
+                </div>
+            </div>
 
-        return (<div>
-            Hello World
-            </div>)
+        )
+
 
     }
 
 });
 
-React.render(<Main/>, document.getElementById('app'));
+module.exports = Main;
