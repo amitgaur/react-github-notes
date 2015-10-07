@@ -24368,7 +24368,7 @@
 	    mixins: [Router.State],
 	    getInitialState: function getInitialState() {
 
-	        return { bio: {}, notes: [], repos: [] };
+	        return { bio: { "name": " Amit Gaur", "age": "45" }, notes: ["note1", "note2"], repos: ["repo1", "repo2"] };
 	    },
 	    render: function render() {
 	        var username = this.props.params.username;
@@ -24378,17 +24378,17 @@
 	            React.createElement(
 	                'div',
 	                { className: 'col-md-4' },
-	                React.createElement(UserProfile, null)
+	                React.createElement(UserProfile, { username: username, bio: this.state.bio })
 	            ),
 	            React.createElement(
 	                'div',
 	                { className: 'col-md-4' },
-	                React.createElement(Repos, null)
+	                React.createElement(Repos, { username: username, repos: this.state.repos })
 	            ),
 	            React.createElement(
 	                'div',
 	                { className: 'col-md-4' },
-	                React.createElement(Notes, null)
+	                React.createElement(Notes, { username: username, notes: this.state.notes })
 	            )
 	        );
 	    }
@@ -24410,12 +24410,17 @@
 	var Notes = React.createClass({
 	    displayName: 'Notes',
 
+	    propTypes: {
+	        username: React.PropTypes.string.isRequired,
+	        notes: React.PropTypes.array.isRequired
+	    },
 	    render: function render() {
 
 	        return React.createElement(
 	            'div',
 	            null,
-	            'Notes'
+	            'Notes are ',
+	            this.props.notes
 	        );
 	    }
 	});
@@ -24436,12 +24441,20 @@
 	var UserProfile = React.createClass({
 	    displayName: 'UserProfile',
 
+	    propTypes: {
+	        username: React.PropTypes.string.isRequired,
+	        bio: React.PropTypes.object.isRequired
+	    },
 	    render: function render() {
 
 	        return React.createElement(
 	            'div',
 	            null,
-	            'UserProfile'
+	            'User Profile UserName : ',
+	            this.props.username,
+	            React.createElement('br', null),
+	            'Bio : ',
+	            this.props.bio
 	        );
 	    }
 	});
@@ -24462,12 +24475,17 @@
 	var Repos = React.createClass({
 	    displayName: 'Repos',
 
+	    propTypes: {
+	        username: React.PropTypes.string.isRequired,
+	        repos: React.PropTypes.array.isRequired
+	    },
 	    render: function render() {
 
 	        return React.createElement(
 	            'div',
 	            null,
-	            'REPOS'
+	            'REPOS Repos are : ',
+	            this.props.repos
 	        );
 	    }
 	});
