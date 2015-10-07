@@ -4,6 +4,12 @@
 
 var React = require('react');
 var Router = require('react-router');
+var UserProfile = require('./Github/UserProfile');
+
+var Repos = require('./Github/Repos');
+
+var Notes = require('./Notes/Notes');
+
 
 
 var Profile = React.createClass({
@@ -17,9 +23,9 @@ var Profile = React.createClass({
             return (
 
                 <div className="row">
-                    <div className="col-md-4">User Profile -->{username}</div>
-                    <div className="col-md-4">User Repos</div>
-                    <div className="col-md-4">User Comments</div>
+                    <div className="col-md-4"><UserProfile/></div>
+                    <div className="col-md-4"><Repos /></div>
+                    <div className="col-md-4"><Notes /></div>
 
 
                 </div>
@@ -29,4 +35,4 @@ var Profile = React.createClass({
 });
 
 
-module.exports = { Profile};
+module.exports =  Profile;
