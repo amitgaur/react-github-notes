@@ -24406,6 +24406,7 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var NotesList = __webpack_require__(208);
 
 	var Notes = React.createClass({
 	    displayName: 'Notes',
@@ -24419,8 +24420,12 @@
 	        return React.createElement(
 	            'div',
 	            null,
-	            'Notes are ',
-	            this.props.notes
+	            React.createElement(
+	                'h3',
+	                null,
+	                'Notes '
+	            ),
+	            React.createElement(NotesList, { notes: this.props.notes })
 	        );
 	    }
 	});
@@ -24491,6 +24496,43 @@
 	});
 
 	module.exports = Repos;
+
+/***/ },
+/* 206 */,
+/* 207 */,
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by agaur on 10/7/15.
+	 */
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var NotesList = React.createClass({
+	    displayName: "NotesList",
+
+	    render: function render() {
+
+	        var notesList = this.props.notes.map(function (item, i) {
+	            return React.createElement(
+	                "li",
+	                { key: i, className: "list-group-item" },
+	                item
+	            );
+	        });
+
+	        return React.createElement(
+	            "ul",
+	            { className: "list-group" },
+	            notesList
+	        );
+	    }
+
+	});
+
+	module.exports = NotesList;
 
 /***/ }
 /******/ ]);
