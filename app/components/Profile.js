@@ -7,13 +7,23 @@ var Router = require('react-router');
 
 
 var Profile = React.createClass({
+    mixins : [Router.State],
     getInitialState : function(){
 
         return { bio :{}, notes:[], repos : []}
     },
     render : function(){
+            var username = this.props.params.username;
+            return (
 
-            return (<div className="col-md-16">HI</div>);
+                <div className="row">
+                    <div className="col-md-4">User Profile -->{username}</div>
+                    <div className="col-md-4">User Repos</div>
+                    <div className="col-md-4">User Comments</div>
+
+
+                </div>
+            );
 
     }
 });

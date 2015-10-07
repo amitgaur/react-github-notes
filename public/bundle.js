@@ -24360,16 +24360,32 @@
 	var Profile = React.createClass({
 	    displayName: 'Profile',
 
+	    mixins: [Router.State],
 	    getInitialState: function getInitialState() {
 
 	        return { bio: {}, notes: [], repos: [] };
 	    },
 	    render: function render() {
-
+	        var username = this.props.params.username;
 	        return React.createElement(
 	            'div',
-	            { className: 'col-md-16' },
-	            'HI'
+	            { className: 'row' },
+	            React.createElement(
+	                'div',
+	                { className: 'col-md-4' },
+	                'User Profile -->',
+	                username
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-md-4' },
+	                'User Repos'
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'col-md-4' },
+	                'User Comments'
+	            )
 	        );
 	    }
 	});
