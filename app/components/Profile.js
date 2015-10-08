@@ -5,18 +5,24 @@
 var React = require('react');
 var Router = require('react-router');
 var UserProfile = require('./Github/UserProfile');
-
 var Repos = require('./Github/Repos');
-
 var Notes = require('./Notes/Notes');
-
-
+var ReactFireMixin = require('reactfire');
+var Firebase = require('firebase');
 
 var Profile = React.createClass({
-    mixins : [Router.State],
+    mixins : [Router.State,ReactFireMixin],
     getInitialState : function(){
 
-        return { bio :{"name" :" Amit Gaur", "age" : "45"}, notes:["note1", "note2"], repos : ["repo1", "repo2"]}
+        return { bio :{"name" :" Amit Gaur", "age" : "45"}, notes:[], repos : ["repo1", "repo2"]}
+    },
+    componentDidMount : function(){
+        this.ref  = new Firebase('https://popping-inferno-2299.firebaseio.com/');
+        var childRef = this.ref.child(this.props.params.username);
+        this.bindAsArray(childRef, 'notes');
+    },
+    componentWillUnmount(){
+        this.unbind('notes');
     },
     render : function(){
             var username = this.props.params.username;
