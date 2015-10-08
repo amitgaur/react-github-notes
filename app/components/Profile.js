@@ -17,13 +17,20 @@ var Profile = React.createClass({
         return { bio :{"name" :" Amit Gaur", "age" : "45"}, notes:[], repos : ["repo1", "repo2"]}
     },
     componentDidMount : function(){
-        this.ref  = new Firebase('https://popping-inferno-2299.firebaseio.com/');
-        var childRef = this.ref.child(this.props.params.username);
-        this.bindAsArray(childRef, 'notes');
+        var url = "https://popping-inferno-2299.firebaseio.com/" + this.props.params.username;
+        console.log("URL is set to ",url);
+        this.ref  = new Firebase(url);
+
+        this.bindAsArray(this.ref, 'notes');
     },
-    componentWillUnmount(){
+    componentWillUnmount: function(){
         this.unbind('notes');
     },
+    handleAddNote : function(newNote){
+        console.log("I got called with value", newNote, "current state", this.state.notes);
+        this.ref.push(newNote);
+    },
+
     render : function(){
             var username = this.props.params.username;
             return (
@@ -31,7 +38,7 @@ var Profile = React.createClass({
                 <div className="row">
                     <div className="col-md-4"><UserProfile username={username} bio = {this.state.bio} /></div>
                     <div className="col-md-4"><Repos username={username} repos = {this.state.repos} /></div>
-                    <div className="col-md-4"><Notes username={username} notes = {this.state.notes}/></div>
+                    <div className="col-md-4"><Notes username={username} notes = {this.state.notes} handleAddNote = {this.handleAddNote}/></div>
 
 
                 </div>

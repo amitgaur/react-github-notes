@@ -9,8 +9,8 @@ var NotesList = React.createClass({
     render : function(){
 
 
-            var notesList  = this.props.notes.map(function(item, i){
-                return <li key={i} className="list-group-item">{item}</li>
+            var notesList  = this.props.notes.map(function(item){
+                return <li key={item['.key']} className="list-group-item">{item['.value']}</li>
 
             });
 
