@@ -7,21 +7,26 @@ var Router = require('react-router');
 var UserProfile = require('./Github/UserProfile');
 var Repos = require('./Github/Repos');
 var Notes = require('./Notes/Notes');
-var ReactFireMixin = require('reactfire');
+var ReactFireMixin = require('reactfire')
 var Firebase = require('firebase');
+
+var helpers = require('./utils/helpers');
 
 var Profile = React.createClass({
     mixins : [Router.State,ReactFireMixin],
     getInitialState : function(){
 
-        return { bio :{"name" :" Amit Gaur", "age" : "45"}, notes:[], repos : ["repo1", "repo2"]}
+        return { bio :{}, notes:[], repos : []}
     },
     componentDidMount : function(){
         var url = "https://popping-inferno-2299.firebaseio.com/" + this.props.params.username;
         console.log("URL is set to ",url);
         this.ref  = new Firebase(url);
-
         this.bindAsArray(this.ref, 'notes');
+        helpers.getAll(this.props.params.username).then(function(result){
+            this.setState({bio : result.bio, repos : result.repos});
+        }.bind(this));
+
     },
     componentWillUnmount: function(){
         this.unbind('notes');
