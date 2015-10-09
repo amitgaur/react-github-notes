@@ -2,6 +2,7 @@
  * Created by agaur on 10/5/15.
  */
 var React = require('react');
+var SearchGitHub = require('./SearchGitHub');
 
 var Main = React.createClass({
 
@@ -10,7 +11,7 @@ var Main = React.createClass({
             <div className="main-container">
                 <nav className="navbar navbar-default" role="navigation">
                     <div className="col-xs-7 col-xs-offset-2" style={{marginTop: 15}}>
-                        MENU
+                      <SearchGitHub/>
                     </div>
                 </nav>
                 <div className="container">
