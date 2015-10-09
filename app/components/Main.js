@@ -11,7 +11,7 @@ var Main = React.createClass({
             <div className="main-container">
                 <nav className="navbar navbar-default" role="navigation">
                     <div className="col-xs-7 col-xs-offset-2" style={{marginTop: 15}}>
-                      <SearchGitHub/>
+                        <SearchGitHub/>
                     </div>
                 </nav>
                 <div className="container">
