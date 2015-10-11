@@ -1,39 +1,37 @@
-/**
- * Created by agaur on 10/8/15.
- */
 var React = require('react');
-var ReactRouter = require('react-router');
+var Router = require('react-router');
 
-
-var SearchGitHub = React.createClass({
-    mixins : [ReactRouter.Navigation],
-    handleSubmit : function(){
+var SearchGithub = React.createClass({
+    mixins: [Router.History],
+    handleSubmit: function(){
         var username = this.refs.username.getDOMNode().value;
         this.refs.username.getDOMNode().value = '';
-        this.transitionTo('profile', {username : username});
+        this.setState({btn_disabled:    true});
+        console.log("going to redirect user to ", "profile/"+username);
+        this.history.pushState(null,'/profile/'+username,{});
     },
-    render : function(){
-            return (
-                <div className="col-sm-12">
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="form-group col-sm-7">
-                            <input type="text" className="form-control" ref="username"/>
-
-                        </div>
-
-                        <div className="form-group col-sm-5">
-                            <button type="submit" className="btn btn-block btn-primary">Search GitHub</button>
-                        </div>
-
-
-
-                    </form>
-                </div>
-
-            )
-
+    getInitialState   : function(){ return {btn_disabled : true}
+    },
+    handleChange  : function(){
+        var val = this.refs.username.getDOMNode().value;
+        if (val.length>0){
+            this.setState({btn_disabled: false});
+        }
+    },
+    render: function(){
+        return (
+            <div className="col-sm-12">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group col-sm-7">
+                        <input type="text" className="form-control" onChange = {this.handleChange} ref="username" />
+                    </div>
+                    <div className="form-group col-sm-5">
+                        <button type="submit" className="btn btn-block btn-primary" disabled={this.state.btn_disabled}>Search Github </button>
+                    </div>
+                </form>
+            </div>
+        )
     }
-
 });
 
-module.exports = SearchGitHub;
+module.exports = SearchGithub;

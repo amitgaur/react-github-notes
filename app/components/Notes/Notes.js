@@ -12,7 +12,7 @@ var Notes = React.createClass({
         handleAddNote  : React.PropTypes.func.isRequired
     },
     render  : function(){
-
+        console.log("Rendering notes", this.props.username);
         return (<div>
             <h3>Notes </h3>
             <AddNote username = {this.props.username} handleAddNote = { this.props.handleAddNote}/>

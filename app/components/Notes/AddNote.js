@@ -21,13 +21,13 @@ var AddNote = React.createClass({
     },
     handleChange : function(e){
         this.setState({'noteVal' :  e.target.value, 'disabled' : false}) ;
-        console.log(this.state);
+
     },
     render: function () {
 
         return (
             <div className="input-group">
-                <input type="text" className="form-control" ref="newNote"  onChange = {this.handleChange} placeholder="Add New Note..."/>
+                    <input type="text" className="form-control" ref="newNote"  onChange = {this.handleChange} placeholder="Add New Note..."/>
                     <span className="input-group-btn">
                     <button className="btn btn-default"  disabled={this.state.disabled} type="button" onClick={this.handleSubmit}>Go!</button>
                     </span>

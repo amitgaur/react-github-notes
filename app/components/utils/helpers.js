@@ -33,8 +33,8 @@ var helpers ={
     }).catch(function(error) {
         console.log("error", error);
         return {
-            bio: "not found",
-            repos: "not found"
+            bio: {},
+            repos: {}
         }
     });
 
